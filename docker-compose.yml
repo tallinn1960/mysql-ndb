@@ -6,7 +6,7 @@ x-env-files:      &env-files
 
 services:
   mysql-manager-1:
-    image:        habibiefaried/mysql-ndb:latest
+    image:        tallinn1960/mysql-cluster-configured:8.0
     <<:           *env-files
     networks:
       - db-network
@@ -15,7 +15,7 @@ services:
     container_name: mysql-manager-1
 
   mysql-manager-2:
-    image:        habibiefaried/mysql-ndb:latest
+    image:        tallinn1960/mysql-cluster-configured:8.0
     <<:           *env-files
     networks:
       - db-network
@@ -24,7 +24,7 @@ services:
     container_name: mysql-manager-2
 
   data-node-1:
-    image:        habibiefaried/mysql-ndb:latest
+    image:        tallinn1960/mysql-cluster-configured:8.0
     <<:           *env-files
     networks:
       - db-network
@@ -33,7 +33,7 @@ services:
     container_name: data-node-1
 
   data-node-2:
-    image:        habibiefaried/mysql-ndb:latest
+    image:        tallinn1960/mysql-cluster-configured:8.0
     <<:           *env-files
     networks:
       - db-network
@@ -42,7 +42,7 @@ services:
     container_name: data-node-2
 
   mysql-server-1:
-    image:        habibiefaried/mysql-ndb:latest
+    image:        tallinn1960/mysql-cluster-configured:8.0
     <<:           *env-files
     networks:
       - db-network
@@ -53,16 +53,18 @@ services:
     container_name: mysql-server-1
 
   mysql-server-2:
-    image:        habibiefaried/mysql-ndb:latest
+    image:        tallinn1960/mysql-cluster-configured:8.0
     <<:           *env-files
     networks:
       - db-network
     restart:      always
     command:      mysqld
+    ports:
+      - 3307:3306
     container_name: mysql-server-2
 
   mysql-tester:
-    image:        habibiefaried/mysql-ndb:latest
+    image:        tallinn1960/mysql-cluster-configured:8.0
     <<:           *env-files
     networks:
       - db-network
