@@ -49,7 +49,7 @@ services:
     restart:      always
     command:      mysqld --server-id=11
     ports:
-      - 3306:3306
+      - 33306:3306
     container_name: mysql-server-1
 
   mysql-server-2:
@@ -60,17 +60,8 @@ services:
     restart:      always
     command:      mysqld --server-id=12
     ports:
-      - 3307:3306
+      - 33307:3306
     container_name: mysql-server-2
-
-  mysql-tester:
-    image:        mysql-cluster-configured:8.0
-    <<:           *env-files
-    networks:
-      - db-network
-    restart:      always
-    command:      sleep infinity
-    container_name: mysql-tester
 
   phpmyadmin:
     image:        phpmyadmin/phpmyadmin
@@ -82,7 +73,7 @@ services:
     networks:
       - db-network
     ports:
-      - 50080:80
+      - 50081:80
     restart:      always
     container_name: phpmyadmin
 
